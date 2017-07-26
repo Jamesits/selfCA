@@ -5,7 +5,7 @@ Generate your own CA and sign certs fastly.
 ## Safety Notice
 
  * If use in production (I wish you not), generate CA keys on an airgap PC (**NO NETWORK CONNECTION**, pull out wireless card and glue LAN port)
- * These scripts are provided as-is and doesn't guarantee and level of safety and functionality.
+ * These scripts are provided as-is and doesn't guarantee any level of safety and functionality.
  * Don't leak your key password. Set a strong one.
 
 ## Installation
