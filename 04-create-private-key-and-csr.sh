@@ -12,7 +12,7 @@ source util/die.sh
 source config.sh
 
 if [[ "$#" -ne 1 ]]; then
-    die "Usage: $0 common_name\nThis will generate common_name.key.pem and common_name.csr.pem"
+    die "Usage: $0 common_name (This will generate common_name.key.pem and common_name.csr.pem)"
 fi
 
 COMMON_NAME=$1
