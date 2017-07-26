@@ -80,7 +80,7 @@ This will generate 2 files: `www.example.com.key.pem` and `www.example.com.csr.p
 #### Sign cert by intermediate CA
 Note: if your private key is generated on another machine, transfer `www.example.com.csr.pem` back to the machine where intermediate CA keys exist.
 
-You will be asked if OK to sign, otherwise OpenSSL failed to generate key or CSR.
+You will be asked if OK to sign. If not, then OpenSSL failed to generate key or CSR.
 ```shell
 ./05-sign-cert.sh www.example.com.csr.pem www.example.com.cert.pem 365
 ```
@@ -98,7 +98,7 @@ use `chain.cert.pem` as certificate file and `www.example.com.key.pem` as certif
 #### Generate CRL
 If you only enabled CRL for one CA, you only need to run one command. If you didn't set up CRL, you can safely ignore this.
 ```shell
-./06-create-ca.crl.sh
+./06-create-ca-crl.sh
 ./07-create-intermediate-crl.sh
 ```
 CRLs are signed with corresponding private keys so you need to input pass phrase.
