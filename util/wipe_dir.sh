@@ -6,20 +6,19 @@ wipe_dir() {
         # dir exists
         if [ "$(ls -A $1)" ]; then
             # dir not empty
-            dialog --title "Warning"  --yesno "Directory not empty. Wipe it?" 6 25
-            if [ $? -eq 0 ]
-            then
+            dialog --title "Warning"  --yesno "Directory \"$1\" not empty. Wipe it?" 8 80
+            if [ $? -eq 0 ]; then
                 rm -rf $1
             fi
         fi
     else
         if [ -e "$1" ]; then
             # name taken by a regular file
-            dialog --title "Warning"  --yesno "Name already taken. Delete that file?" 6 25
-            if [ $? -eq 0 ]
-            then
+            dialog --title "Warning"  --yesno "Name \"$1\" already taken. Delete that file?" 8 80
+            if [ $? -eq 0 ]; then
                 rm -f $1
             fi
+        fi
     fi
     mkdir -p $1
 }
