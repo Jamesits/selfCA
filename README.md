@@ -9,7 +9,7 @@ Some OpenSSL wrapper scripts to generate your own CA and sign certs.
  * Don't leak your key password. Set a strong one.
 
 ## Installation
-Depends on `dialog(1)`.
+Works under macOS and Linux (generically). Depends on `dialog(1)`.
 
 ### macOS
 ```shell
@@ -20,6 +20,8 @@ brew install dialog
 ```shell
 apt install dialog
 ```
+
+Then clone this repo.
 
 ## Usage
 
@@ -91,6 +93,11 @@ cat www.example.com.cert.pem $SELFCA_ROOT/$INTERMEDIATE_CERT_NAME/certs/$INTERME
 
 #### Config your webserver
 use `chain.cert.pem` as certificate file and `www.example.com.key.pem` as certificate key.
+
+## Install Root CA
+
+ * [Windows](https://msdn.microsoft.com/en-us/library/cc750534.aspx)
+ * [macOS](https://www.bounca.org/tutorials/install_root_certificate.html)
 
 ## FAQ
 
