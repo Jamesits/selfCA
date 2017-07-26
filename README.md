@@ -8,6 +8,11 @@ Some OpenSSL wrapper scripts to generate your own CA and sign certs.
 brew install dialog
 ```
 
+### Ubuntu
+```shell
+apt install dialog
+```
+
 ## Usage
 
 First copy `config.template.sh` to `config.sh`.
