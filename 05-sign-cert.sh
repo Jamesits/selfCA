@@ -16,7 +16,7 @@ CSR="$1"
 CERT="$2"
 DAYS="$3"
 
-openssl ca -config "$SELFCA_ROOT/$INTERMEDIATE_CERT_NAME/openssl.cnf" -extensions server_cert -days $DAYS -notext -md sha256 -in "$CSR" -out "$CERT"
+openssl ca -config "$SELFCA_ROOT/$INTERMEDIATE_CERT_NAME/openssl.cnf" -extensions server_cert -days $DAYS -notext -md sha256 -extentions san_env -in "$CSR" -out "$CERT"
 chmod 444 "$CERT"
 openssl x509 -noout -text -in "$CERT"
 openssl verify -CAfile "$SELFCA_ROOT/$INTERMEDIATE_CERT_NAME/certs/ca-chain.cert.pem" "$CERT"

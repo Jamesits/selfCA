@@ -19,4 +19,4 @@ COMMON_NAME=$1
 
 openssl genrsa -out "$COMMON_NAME.key.pem" $DEFAULT_KEY_LENGTH
 chmod 400 "$COMMON_NAME.key.pem"
-openssl req -config "$SELFCA_ROOT/$INTERMEDIATE_CERT_NAME/openssl.cnf" -key "$COMMON_NAME.key.pem" -new -sha256 -out "$COMMON_NAME.csr.pem"
+openssl req -config "$SELFCA_ROOT/$INTERMEDIATE_CERT_NAME/openssl.cnf" -key "$COMMON_NAME.key.pem" -new -sha256 -extentions san_env -out "$COMMON_NAME.csr.pem"
