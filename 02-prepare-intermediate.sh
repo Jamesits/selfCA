@@ -8,9 +8,19 @@ source util/prompt_info.sh
 source util/escape_sed.sh
 source config.sh
 
+prompt_info "Please make sure the follow info is correct\n" \
+            "Creating intermediate CA under $SELFCA_ROOT/$INTERMEDIATE_CERT_NAME\n" \
+            "Current user: $CURRENT_USER\n" \
+            "OpenSSL: $OPENSSL_VERSION\n" \
+            "Using templates from: $PROGRAM_DIR\n" \
+            "\nPress <Enter> to proceed."
+if [ ! $? -eq 0 ]; then
+    exit -1
+fi
+
 cd "$SELFCA_ROOT"
 
-mkdir -p "$INTERMEDIATE_CERT_NAME"
+wipe_dir "$INTERMEDIATE_CERT_NAME"
 cd "$INTERMEDIATE_CERT_NAME"
 
 mkdir -p certs crl csr newcerts private

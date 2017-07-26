@@ -5,24 +5,25 @@ source util/check_user.sh
 source util/check_dir.sh
 source util/wipe_dir.sh
 source util/prompt_info.sh
+source util/die.sh
 source config.sh
 
 cd "$SELFCA_ROOT"
 
 echo "You will be prompted to enter your intermediate key pass phrase. Enter a strong passphrase and remember it. "
-openssl genrsa -aes256 -out $INTERMEDIATE_CERT_NAME/private/ca.key.pem 4096
-chmod 400 $INTERMEDIATE_CERT_NAME/private/ca.key.pem
-
-echo "You will be prompted to enter your intermediate key pass phrase again, and information for your intermediate certificate. "
+openssl genrsa -aes256 -out "$INTERMEDIATE_CERT_NAME/private/$INTERMEDIATE_CERT_NAME.key.pem" 4096
+chmod 400 "$INTERMEDIATE_CERT_NAME/private/$INTERMEDIATE_CERT_NAME.key.pem"
 
 # Generate CSR
-openssl req -config "$INTERMEDIATE_CERT_NAME/openssl.cnf" -new -sha256 -key "$INTERMEDIATE_CERT_NAME/private/intermediate.key.pem" -out "$INTERMEDIATE_CERT_NAME/csr/intermediate.csr.pem"
+echo "You will be prompted to enter your intermediate key pass phrase again, and information for your intermediate certificate. "
+openssl req -config "$INTERMEDIATE_CERT_NAME/openssl.cnf" -new -sha256 -key "$INTERMEDIATE_CERT_NAME/private/$INTERMEDIATE_CERT_NAME.key.pem" -out "$INTERMEDIATE_CERT_NAME/csr/$INTERMEDIATE_CERT_NAME.csr.pem" || die "Unable to generate CSR, maybe wrong intermediate key passphrase?"
 
 # Sign with root cert
-openssl ca -config openssl.cnf -extensions v3_intermediate_ca -days INTERMEDIATE_CERT_DAYS -notext -md sha256 -in "$INTERMEDIATE_CERT_NAME/csr/intermediate.csr.pem" -out "$INTERMEDIATE_CERT_NAME/certs/intermediate.cert.pem"
+echo "You will be prompted to enter your root key pass phrase"
+openssl ca -config openssl.cnf -extensions v3_intermediate_ca -days $INTERMEDIATE_CERT_DAYS -notext -md sha256 -in "$INTERMEDIATE_CERT_NAME/csr/$INTERMEDIATE_CERT_NAME.csr.pem" -out "$INTERMEDIATE_CERT_NAME/certs/$INTERMEDIATE_CERT_NAME.cert.pem" || die "Unable to sign cert, maybe wrong root key pass phrase?"
 
-chmod 444 "$INTERMEDIATE_CERT_NAME/certs/intermediate.cert.pem"
+chmod 444 "$INTERMEDIATE_CERT_NAME/certs/$INTERMEDIATE_CERT_NAME.cert.pem"
 
-echo "Verifying your root certificate"
-openssl x509 -noout -text -in "$INTERMEDIATE_CERT_NAME/certs/intermediate.cert.pem"
-openssl verify -CAfile certs/ca.cert.pem $INTERMEDIATE_CERT_NAME/certs/intermediate.cert.pem
+echo "Verifying your intermediate certificate"
+openssl x509 -noout -text -in "$INTERMEDIATE_CERT_NAME/certs/$INTERMEDIATE_CERT_NAME.cert.pem"
+openssl verify -CAfile "certs/ca.cert.pem" "$INTERMEDIATE_CERT_NAME/certs/$INTERMEDIATE_CERT_NAME.cert.pem"
