@@ -7,7 +7,7 @@ source util/wipe_dir.sh
 source util/prompt_info.sh
 source config.sh
 
-cd $SELFCA_ROOT
+cd "$SELFCA_ROOT"
 
 echo "You will be prompted to enter your root key pass phrase. Enter a strong passphrase and remember it. "
 openssl genrsa -aes256 -out private/ca.key.pem 4096

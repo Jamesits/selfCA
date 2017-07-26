@@ -26,5 +26,4 @@ touch index.txt
 echo 1000 > serial
 
 cp $PROGRAM_DIR/template/openssl.rootca.cnf openssl.cnf
-echo $(escape_sed_regex %rootdir%)
-sed -i"" -e "s/$(escape_sed_regex %rootdir%)/$(escape_sed_replace $SELFCA_ROOT)/g" openssl.cnf
+sed -i "" -e "s/$(escape_sed_regex %rootdir%)/$(escape_sed_replace $SELFCA_ROOT)/g" openssl.cnf
