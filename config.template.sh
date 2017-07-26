@@ -10,11 +10,20 @@ SELFCA_ROOT=/root/ca
 # Root certificate effective days
 ROOT_CERT_DAYS=7300
 
+# Root key length
+ROOT_KEY_LENGTH=4096
+
 # Intermediate cert name
 INTERMEDIATE_CERT_NAME=test-intermediate
 
 # Intermediate certificate effective days
 INTERMEDIATE_CERT_DAYS=3650
+
+# Intermediate key length
+INTERMEDIATE_KEY_LENGTH=4096
+
+# Website cert key length
+DEFAULT_KEY_LENGTH=2048
 
 # Certificate distribute folder
 DISTRIBUTE_DIR=/tmp/ca-dist

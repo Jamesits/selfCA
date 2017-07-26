@@ -11,7 +11,7 @@ source config.sh
 cd "$SELFCA_ROOT"
 
 echo "You will be prompted to enter your intermediate key pass phrase. Enter a strong passphrase and remember it. "
-openssl genrsa -aes256 -out "$INTERMEDIATE_CERT_NAME/private/$INTERMEDIATE_CERT_NAME.key.pem" 4096
+openssl genrsa -aes256 -out "$INTERMEDIATE_CERT_NAME/private/$INTERMEDIATE_CERT_NAME.key.pem" $INTERMEDIATE_KEY_LENGTH
 chmod 400 "$INTERMEDIATE_CERT_NAME/private/$INTERMEDIATE_CERT_NAME.key.pem"
 
 # Generate CSR

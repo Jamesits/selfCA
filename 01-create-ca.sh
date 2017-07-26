@@ -11,7 +11,7 @@ source config.sh
 cd "$SELFCA_ROOT"
 
 echo "You will be prompted to enter your root key pass phrase. Enter a strong passphrase and remember it. "
-openssl genrsa -aes256 -out private/ca.key.pem 4096
+openssl genrsa -aes256 -out private/ca.key.pem $ROOT_KEY_LENGTH
 chmod 400 private/ca.key.pem
 
 echo "You will be prompted to enter your root key pass phrase again, and information for your root certificate. "
