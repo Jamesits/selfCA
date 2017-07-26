@@ -95,7 +95,7 @@ cat www.example.com.cert.pem $SELFCA_ROOT/$INTERMEDIATE_CERT_NAME/certs/$INTERME
 use `chain.cert.pem` as certificate file and `www.example.com.key.pem` as certificate key.
 
 ### CRL
-#### CRL
+#### Generate CRL
 If you only enabled CRL for one CA, you only need to run one command. If you didn't set up CRL, you can safely ignore this.
 ```shell
 ./06-create-ca.crl.sh
@@ -103,7 +103,8 @@ If you only enabled CRL for one CA, you only need to run one command. If you did
 ```
 CRLs are signed with corresponding private keys so you need to input pass phrase.
 
-Then get CRL file from `$SELFCA_ROOT/crl/` and `$SELFCA_ROOT/$INTERMEDIATE_CERT_NAME/crl`, put them to the correct location.
+#### Host CRL
+Get CRL file from `$SELFCA_ROOT/crl/` and `$SELFCA_ROOT/$INTERMEDIATE_CERT_NAME/crl`, put them to the correct location.
 
 ## Install Root CA
 
