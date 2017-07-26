@@ -75,7 +75,7 @@ Note: to do this on webserver (to prevent private key leaking), package this rep
 ```shell
 ./04-create-private-key-and-csr.sh /path/to/your/ssl/key/www.example.com
 ```
-This will generate 2 files: `www.example.com.key.pem` and `www.example.com.csr.pem`.
+This will generate 2 files: `www.example.com.key.pem` and `www.example.com.csr.pem` under folder `/path/to/your/ssl/key/`.
 
 #### Sign cert by intermediate CA
 Note: if your private key is generated on another machine, transfer `www.example.com.csr.pem` back to the machine where intermediate CA keys exist.
