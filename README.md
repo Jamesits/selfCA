@@ -94,6 +94,17 @@ cat www.example.com.cert.pem $SELFCA_ROOT/$INTERMEDIATE_CERT_NAME/certs/$INTERME
 #### Config your webserver
 use `chain.cert.pem` as certificate file and `www.example.com.key.pem` as certificate key.
 
+### CRL
+#### CRL
+If you only enabled CRL for one CA, you only need to run one command. If you didn't set up CRL, you can safely ignore this.
+```shell
+./06-create-ca.crl.sh
+./07-create-intermediate-crl.sh
+```
+CRLs are signed with corresponding private keys so you need to input pass phrase.
+
+Then get CRL file from `$SELFCA_ROOT/crl/` and `$SELFCA_ROOT/$INTERMEDIATE_CERT_NAME/crl`, put them to the correct location.
+
 ## Install Root CA
 
 Distribute `$SELFCA_ROOT/ca/root.cert.pem` to PCs and install them. (You may need to change the extension to `.crt` for better compatiblity.)
