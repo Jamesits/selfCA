@@ -29,5 +29,5 @@ openssl x509 -noout -text -in "$INTERMEDIATE_CERT_NAME/certs/$INTERMEDIATE_CERT_
 openssl verify -CAfile "certs/ca.cert.pem" "$INTERMEDIATE_CERT_NAME/certs/$INTERMEDIATE_CERT_NAME.cert.pem"
 
 echo "Creating certificate chain"
-cat "$INTERMEDIATE_CERT_NAME/certs/$INTERMEDIATE_CERT_NAME.cert.pem" "certs/ca.cert.pem" > "$INTERMEDIATE_CERT_NAME/certs/ca-chain.cert.pem"
+cat "$INTERMEDIATE_CERT_NAME/certs/$INTERMEDIATE_CERT_NAME.cert.pem" "certs/ca.cert.pem" > "$INTERMEDIATE_CERT_NAME/certs/$INTERMEDIATE_CERT_NAME.cert.pem"
 chmod 444 "$INTERMEDIATE_CERT_NAME/certs/$INTERMEDIATE_CERT_NAME-ca-chain.cert.pem"
