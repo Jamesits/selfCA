@@ -11,3 +11,5 @@ else
         SAN=$NEW_SAN
     fi
 fi
+
+export SAN
