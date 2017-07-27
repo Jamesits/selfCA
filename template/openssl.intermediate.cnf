@@ -1,6 +1,10 @@
 # OpenSSL intermediate CA configuration file.
 # Copy to `/root/ca/intermediate/openssl.cnf`.
 
+[ default ]
+# give subjectAltName a default empty value when $SAN unset
+SAN =
+
 [ ca ]
 # `man ca`
 default_ca = CA_default
@@ -132,4 +136,4 @@ keyUsage = critical, digitalSignature
 extendedKeyUsage = critical, OCSPSigning
 
 [ san_env ]
-subjectAltName=${ENV::SAN}
+subjectAltName = ${ENV::SAN}
