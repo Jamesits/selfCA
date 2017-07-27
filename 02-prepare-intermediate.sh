@@ -30,4 +30,5 @@ echo 1000 > serial
 echo 1000 > crlnumber
 
 cp $PROGRAM_DIR/template/openssl.intermediate.cnf openssl.cnf
+sed -i "" -e "s/$(escape_sed_regex %intermediatename%)/$(escape_sed_replace $INTERMEDIATE_CERT_NAME)/g" openssl.cnf
 sed -i "" -e "s/$(escape_sed_regex %intermediatedir%)/$(escape_sed_replace $SELFCA_ROOT/$INTERMEDIATE_CERT_NAME)/g" openssl.cnf

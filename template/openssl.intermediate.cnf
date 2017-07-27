@@ -16,12 +16,12 @@ serial            = $dir/serial
 RANDFILE          = $dir/private/.rand
 
 # The root key and root certificate.
-private_key       = $dir/private/%intermediatedir%.key.pem
-certificate       = $dir/certs/%intermediatedir%.cert.pem
+private_key       = $dir/private/%intermediatename%.key.pem
+certificate       = $dir/certs/%intermediatename%.cert.pem
 
 # For certificate revocation lists.
 crlnumber         = $dir/crlnumber
-crl               = $dir/crl/%intermediatedir%.crl.pem
+crl               = $dir/crl/%intermediatename%.crl.pem
 crl_extensions    = crl_ext
 default_crl_days  = 30
 
